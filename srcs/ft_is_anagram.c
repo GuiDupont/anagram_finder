@@ -1,6 +1,6 @@
 #include "../libft/libft.h"
 
-int ft_place_is_free(int nb, char *array)
+static int	ft_place_is_free(int nb, char *array)
 {
 	if (array[nb] == 0)
 		return (1);
@@ -23,7 +23,7 @@ int		ft_is_anagram(char *word, char *candidate)
 			if (word[i] == candidate[y] && ft_place_is_free(y, &taken[0]))
 			{
 				taken[y] = 1;
-				break;
+				break ;
 			}
 			y++;
 		}
@@ -33,4 +33,3 @@ int		ft_is_anagram(char *word, char *candidate)
 	}
 	return (1);
 }
-
