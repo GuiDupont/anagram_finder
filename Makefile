@@ -12,7 +12,7 @@ INCLUDES= includes
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft/all
+	make -C libft
 	ar rcs $(NAME) ${OBJS}
 
 -c.o:
