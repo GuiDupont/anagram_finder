@@ -15,6 +15,8 @@ int		ft_is_anagram(char *word, char *candidate)
 
 	i = 0;
 	ft_memset(taken, 0, 20);
+	if (ft_strlen(word) != ft_strlen(candidate))
+		return (0);
 	while (word[i])
 	{
 		y = 0;
