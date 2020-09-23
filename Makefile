@@ -1,31 +1,29 @@
-NAME= anagram_finder
+NAME= anagram
 CC= gcc
 CFLAGS= -Wall -Wextra -Werror
 OBJS= ${SRCS:.c=.o}
-SRCS= \
-	srcs/ft_is_anagram.c  \
-	srcs/lst_management.c \
-	srcs/main_test.c
-	
-INCLUDES= includes
+SRCS= srcs/ft_is_anagram.c srcs/lst_management.c srcs/main_test.c
 
-all: $(NAME)
+LIBFT= libft
+
+all: 
+	$(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft
-	ar rcs $(NAME) ${OBJS}
+	make -C $(LIBFT)
+	$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
 
--c.o:
-	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCLUDES}
+%.o: %.c
+	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	make clean -C libft
+	rm -f srcs/*.o
+	make clean -s -C $(LIBFT)
 
-fclean:
-	rm -f $(OBJS) $(NAME)
-	make fclean -C libft
+fclean: clean
+	rm -f $(NAME)
+	make fclean -s -C $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
