@@ -1,4 +1,4 @@
-NAME= anagram_finder.a
+NAME= anagram_finder
 CC= gcc
 CFLAGS= -Wall -Wextra -Werror
 OBJS= ${SRCS:.c=.o}
@@ -16,7 +16,7 @@ $(NAME): $(OBJS)
 	ar rcs $(NAME) ${OBJS}
 
 -c.o:
-	{CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCLUDES}
+	${CC} ${FLAGS} -c $< -o ${<:.c=.o} -I${INCLUDES}
 
 clean:
 	rm -f $(OBJS)
