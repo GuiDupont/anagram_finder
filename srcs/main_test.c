@@ -1,7 +1,6 @@
 #include "../includes/lib.h"
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int		fd;
 	t_word	*words;
@@ -20,4 +19,4 @@ int main(int argc, char **argv)
 		solutions = solutions->next;
 	}
 	return (0);
-}	
+}

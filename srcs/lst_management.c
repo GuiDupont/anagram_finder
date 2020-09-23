@@ -1,10 +1,10 @@
 #include "../includes/lib.h"
 
-t_word  *put_words_in_lst(int fd)
+t_word	*put_words_in_lst(int fd)
 {
-    t_word  *final;
-    t_word  *temp;
-    char    *line;
+	t_word	*final;
+	t_word	*temp;
+	char	*line;
 
 	get_next_line(fd, &line);
 	final = ft_lstnew(line);
@@ -14,7 +14,7 @@ t_word  *put_words_in_lst(int fd)
 	{
 		temp->next = ft_lstnew(line);
 		temp = temp->next;
-	}	
+	}
 	return (final);
 }
 
@@ -25,7 +25,7 @@ t_word	*find_anagrams(char *word, t_word *all_words)
 	int		flag_first;
 
 	flag_first = 0;
-	while(all_words)
+	while (all_words)
 	{
 		if (ft_is_anagram(word, all_words->content) == 1)
 		{
@@ -40,10 +40,8 @@ t_word	*find_anagrams(char *word, t_word *all_words)
 				solutions->next = ft_lstnew(all_words->content);
 				solutions = solutions->next;
 			}
-
 		}
 		all_words = all_words->next;
 	}
 	return (first_elem);
 }
-

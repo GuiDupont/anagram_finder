@@ -7,7 +7,7 @@ static int	ft_place_is_free(int nb, char *array)
 	return (0);
 }
 
-int		ft_is_anagram(char *word, char *candidate)
+int			ft_is_anagram(char *word, char *candidate)
 {
 	int		i;
 	int		y;
@@ -15,7 +15,7 @@ int		ft_is_anagram(char *word, char *candidate)
 
 	i = 0;
 	ft_memset(taken, 0, 20);
-	if (ft_strlen(word) != ft_strlen(candidate))
+	if ((ft_strlen(word) != ft_strlen(candidate)) || !ft_strcmp(word, candidate))
 		return (0);
 	while (word[i])
 	{
