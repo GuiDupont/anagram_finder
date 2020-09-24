@@ -1,13 +1,16 @@
-NAME= anagram
-CC= gcc
-CFLAGS= -Wall -Wextra -Werror
-OBJS= ${SRCS:.c=.o}
-SRCS= srcs/ft_is_anagram.c srcs/lst_management.c srcs/main_test.c
+NAME = anagram
+
+CC = gcc
+
+CFLAGS = -Wall -Wextra -Werror
+
+OBJS = ${SRCS:.c=.o}
+
+SRCS = srcs/ft_is_anagram.c srcs/lst_management.c srcs/main_test.c
 
 LIBFT= libft
 
-all: 
-	$(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
