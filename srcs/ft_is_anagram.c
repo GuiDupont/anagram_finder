@@ -40,6 +40,6 @@ int			ft_is_anagram(char *word, char *candidate, int partial_accepted)
 
 void	print_partial_solutions(t_word *partial_solutions)
 {
-	ft_print_lst(partial_solutions, "This are the partial solutions: ");
+	ft_print_lst(partial_solutions, "These are the partial solutions: ");
 }
 

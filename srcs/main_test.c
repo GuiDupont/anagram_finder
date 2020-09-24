@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
 	solutions[0] = find_anagrams(argv[1], words);
 	solutions[1] = find_partial_anagrams(argv[1], words);
 	solutions[2] = NULL;
-	ft_print_lst(solutions[0], "This are the complete solutions: ");
+	ft_print_lst(solutions[0], "Those are the complete solutions: ");
 	print_partial_solutions(solutions[1]);
 	close(fd);
 	return (0);
