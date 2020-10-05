@@ -8,7 +8,7 @@ SRCS			= \
 					ft_strchr.c ft_strcpy.c ft_strequ.c ft_strjoin.c \
 					ft_strlen.c ft_strncmp.c ft_strnstr.c ft_strtrim.c \
 					ft_strclr.c ft_strdel.c ft_striter.c ft_strlcat.c \
-					ft_strmapi.c ft_strnequ.c ft_strrchr.c \
+					ft_strmapi.c ft_strnequ.c ft_strrchr.c ft_strjoin2d.c \
 					\
 					ft_calloc.c ft_split.c ft_substr.c ft_bzero.c \
 					ft_free_split.c ft_array_length.c \

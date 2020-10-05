@@ -36,6 +36,7 @@ char			*ft_strchr(char const *s1, int c);
 char			*ft_strcpy(char *dest, char *src);
 char			*ft_strdup(char const *s1);
 char			*ft_strjoin(char const *s1, char const *s2);
+char 			*ft_strjoin2d(char **cmd);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strncat(char *dest, char const *src, unsigned int nb);
 char			*ft_strnew(int size);
