@@ -11,10 +11,10 @@ int			ft_is_anagram(char *word, char *candidate, int partial_accepted)
 {
 	int		i;
 	int		y;
-	char	taken[20];
+	char	taken[100];
 
 	i = -1;
-	ft_memset(taken, 0, 20);
+	ft_memset(taken, 0, 100);
 	if ((!partial_accepted && ft_strlen(word) != ft_strlen(candidate)) || 
 	(partial_accepted && ft_strlen(word) == ft_strlen(candidate)) ||
 	 (ft_strlen(word) == 1 && word[0] != 'i'))

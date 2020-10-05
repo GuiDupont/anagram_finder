@@ -29,6 +29,7 @@ t_word	*find_anagrams(char *word, t_word *all_words)
 			// so I used another triks which is to use a 'flag'. This int will let us know
 			// if we already created the first element or not.  
 	flag_first = 0;
+	first_elem = NULL;
 	while (all_words)	// we are going through our linked list of words
 	{
 		if (ft_is_anagram(word, all_words->content, 0) == 1)	// if they are anagrams we want to add the word to our solution list
@@ -55,11 +56,14 @@ t_word	*find_partial_anagrams(char *word, t_word *all_words)
 	t_word	*solutions;
 	t_word	*first_elem;
 	int		flag_first;
+	int		nb;
 
 			// same issue here we want to send the first element of our solutions
 			// so I used another triks which is to use a 'flag'. This int will let us know
 			// if we already created the first element or not.  
 	flag_first = 0;
+	nb = 1;
+	first_elem = NULL;
 	while (all_words)	// we are going through our linked list of words
 	{
 		if (ft_is_anagram(all_words->content, word, 1) == 1)	// if they are anagrams we want to add the word to our solution list
@@ -73,11 +77,13 @@ t_word	*find_partial_anagrams(char *word, t_word *all_words)
 			else					// if it not the first element we can do it normally
 			{
 				solutions->next = ft_lstnew(all_words->content);
+				nb++;
 				solutions = solutions->next;
 			}
 		}
 		all_words = all_words->next;
 	}
+	printf("Number of partial solutions: %d\n", nb);
 	return (first_elem); 
 }
 
@@ -91,3 +97,18 @@ void	ft_print_lst(t_word *lst, char *str)
 	}
 }
 
+void	ft_lstdel(t_word **lst)
+{
+	t_word	**backup;
+	
+	if (!lst || !(*lst))
+		return ;
+	backup = lst;
+	while (*lst)
+	{
+		*lst = (*lst)->next;
+		free(*lst);
+	}
+	free(*backup);
+	backup = NULL;
+}
