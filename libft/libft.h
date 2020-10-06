@@ -6,7 +6,7 @@
 /*   By: gdupont <gdupont@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 11:05:57 by user42            #+#    #+#             */
-/*   Updated: 2020/05/13 14:00:23 by gdupont          ###   ########.fr       */
+/*   Updated: 2020/10/06 15:55:01 by gdupont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int				ft_strncmp(const char *s1, const char *s2, unsigned int n);
 int				ft_strnequ(const char *s1, const char *s2, unsigned int n);
 int				ft_strlen(const char *s);
 int				ft_s_isdigit(char *s);
+int				ft_str_is_cap(char *s);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 
@@ -119,14 +120,15 @@ void			*ft_memset(void *s, int c, unsigned n);
 typedef	struct	s_conf
 {
 	char	*str;
+	char	symb;
+	char	c;
 	int		width;
 	int		precis;
 	int		dot;
 	int		zero;
 	int		l_align;
 	int		neg;
-	char	symb;
-	char	c;
+
 }				t_conf;
 
 int				ft_printf(char const *str, ...);
