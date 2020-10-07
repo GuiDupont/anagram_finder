@@ -7,7 +7,15 @@
 #include <fcntl.h>
 #include "../libft/libft.h"
 
-typedef t_list t_word;
+# define PARTIAL_ACCEPTED 1
+# define PARTIAL_NOT_ACCEPTED 0
+
+typedef	struct	s_word
+{
+	char			*word;
+	int				len;
+	struct s_word	*next;
+}				t_word;
 
 
 /* for now we can use t_list structs for our program. By using a 
@@ -24,15 +32,12 @@ typedef struct s_global
 }			t_global;
 
 t_word	*put_words_in_lst(int fd);
-t_word	*find_anagrams(char *word, t_word *all_words);
-t_word	*find_partial_anagrams(char *word, t_word *all_words);
+t_word	*find_anagrams(char *word, t_word *all_words, int partial_anagrams);
 
 int		ft_is_anagram(char *word, char *candidate, int partial_accepted);
 
 void	ft_print_lst(t_word *lst, char *str);
-
-void	print_partial_solutions(t_word *partial_solutions);
-
+t_word	*ft_lst_word_new(void *content, int len);
 void	ft_lstdel(t_word **lst);
 
 #endif

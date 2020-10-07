@@ -21,10 +21,10 @@ int	main(int argc, char **argv)
 		free(line);
 		line = ft_strjoin2d(temp);
 		ft_free_split(temp);
-		global.solutions = find_anagrams(line, global.dico);
-		global.partial_solutions = find_partial_anagrams(line, global.dico);
+		global.solutions = find_anagrams(line, global.dico, PARTIAL_NOT_ACCEPTED);
+		global.partial_solutions = find_anagrams(line, global.dico, PARTIAL_ACCEPTED);
 		ft_print_lst(global.solutions, "Those are the complete solutions: ");
-		print_partial_solutions(global.partial_solutions);
+		ft_print_lst(global.partial_solutions, "Those are the partial solutions: ");
 		free(line);
 		ft_lstdel(&(global.solutions));
 		ft_lstdel(&(global.partial_solutions));

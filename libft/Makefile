@@ -46,7 +46,7 @@ SRCS			= \
 					\
 					gnl/get_next_line.c gnl/get_next_line_utils.c \
 					\
-					ft_quicksort.c ft_swap.c
+					ft_quicksort.c ft_swap.c ft_str_is_cap.c
 
 all: $(NAME)
 
