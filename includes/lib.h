@@ -14,6 +14,7 @@ typedef	struct	s_word
 {
 	char			*word;
 	int				len;
+	char			*nature;
 	struct s_word	*next;
 }				t_word;
 
