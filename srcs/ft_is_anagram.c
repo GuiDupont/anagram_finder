@@ -61,7 +61,7 @@ int			ft_is_anagram(char *word, char *candidate, int partial_accepted)
 		ft_swap_str(&word, &candidate);
 	if ((!partial_accepted && ft_strlen(word) != ft_strlen(candidate)) || 
 	(partial_accepted && ft_strlen(word) == ft_strlen(candidate)) ||
-	 (ft_strlen(word) == 1 && word[0] != 'i' && word[0] == 'a'))
+	 (ft_strlen(word) == 1 && word[0] != 'i' && word[0] != 'a'))
 		return (0);
 	if (!ft_strcmp(word, candidate))
 		return (0);
