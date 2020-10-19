@@ -4,6 +4,8 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+FFLAGS = -g -fsanitize=address
+
 OBJS = ${SRCS:.c=.o}
 
 SRCS = srcs/ft_is_anagram.c srcs/lst_management.c srcs/main_test.c
@@ -14,7 +16,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(LIBFT)
-	$(CC) $(FLAGS) $(OBJS) libft/libft.a -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(FFLAGS) libft/libft.a -o $(NAME)
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< -o $@

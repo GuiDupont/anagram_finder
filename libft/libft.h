@@ -90,6 +90,7 @@ void			ft_lstadd_back(t_list **alst, t_list *new);
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 void			ft_memdel(void **ap);
+void			ft_print_split(char **s);
 void			ft_putchar(char c);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl(char const *s);

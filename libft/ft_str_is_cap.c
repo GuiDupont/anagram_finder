@@ -1,3 +1,5 @@
+#include "libft.h"
+
 int	ft_str_is_cap(char *str)
 {
 	int i;
@@ -9,5 +11,5 @@ int	ft_str_is_cap(char *str)
 			return (0);
 		i++;
 	}
-	return (i);
+	return (1);
 }

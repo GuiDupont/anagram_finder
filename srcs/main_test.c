@@ -9,8 +9,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 1)
 		return (0);
-	fd = open("dico/english_dico2.txt", O_RDONLY);
-	if (fd <= 0)
+	fd = open("dico/dico_nature.txt", O_RDONLY);
+	if (fd < 0)
 		return (0);
 	global.dico = put_words_in_lst(fd);
 	printf("globaldico : %p", global.dico);
