@@ -61,7 +61,6 @@ int				ft_isalpha(int c);
 int				ft_isascii(int c);
 int				ft_isdigit(int c);
 int				ft_isprint(int c);
-int				ft_lstsize(t_list *lst);
 int				ft_memcmp(const void *s1, const void *s2, unsigned int n);
 int				ft_strcmp(const char *s1, const char *s2);
 int				ft_strequ(const char *s1, const char *s2);
@@ -70,6 +69,7 @@ int				ft_strnequ(const char *s1, const char *s2, unsigned int n);
 int				ft_strlen(const char *s);
 int				ft_s_isdigit(char *s);
 int				ft_str_is_cap(char *s);
+int				ft_str_is_alpha(char const *str);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 

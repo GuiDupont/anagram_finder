@@ -1,4 +1,4 @@
-#include "../includes/lib.h"
+#include "../includes/anagram.h"
 
 int	main(int argc, char **argv)
 {
@@ -6,6 +6,7 @@ int	main(int argc, char **argv)
 	t_global	global;
 	char		*line;
 	char		**temp;
+	t_word		*nature_list;
 
 	if (argc != 1)
 		return (0);
@@ -13,8 +14,6 @@ int	main(int argc, char **argv)
 	if (fd < 0)
 		return (0);
 	global.dico = put_words_in_lst(fd);
-	printf("globaldico : %p", global.dico);
-	ft_print_lst(global.dico, "\ndico:");
 	while (1)
 	{
 		ft_putstr("Write a sentence, we will show you some anagrams:\n");
@@ -27,6 +26,7 @@ int	main(int argc, char **argv)
 		global.partial_solutions = find_anagrams(line, global.dico, PARTIAL_ACCEPTED);
 		ft_print_lst(global.solutions, "Those are the complete solutions: ");
 		ft_print_lst(global.partial_solutions, "Those are the partial solutions: ");
+		ft_putnbr(ft_lstsize(global.partial_solutions));
 		free(line);
 		ft_lstdel(&(global.solutions));
 		ft_lstdel(&(global.partial_solutions));

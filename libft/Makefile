@@ -14,7 +14,7 @@ SRCS			= \
 					ft_free_split.c ft_array_length.c \
 					\
 					ft_lstadd_back.c ft_lstclear.c ft_lstiter.c \
-					ft_lstmap.c ft_lstsize.c ft_lstadd_front.c \
+					ft_lstmap.c ft_lstadd_front.c \
 					ft_lstdelone.c  ft_lstlast.c  ft_lstnew.c \
 					\
 					ft_memalloc.c ft_memccpy.c ft_memchr.c \
@@ -27,7 +27,7 @@ SRCS			= \
 					\
 					ft_isalnum.c ft_isalpha.c ft_isascii.c \
 					ft_isdigit.c ft_isprint.c ft_tolower.c ft_toupper.c \
-					ft_s_isdigit.c \
+					ft_s_isdigit.c ft_str_is_alpha.c \
 					\
 					ft_atoi.c ft_itoa.c ft_itoa_u.c ft_u_to_x.c \
 					ft_ul_to_p.c ft_abs_l.c ft_atof.c \

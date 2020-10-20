@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include "libft.h"
 
-static int	size(char const *str, char c)
+static int	size_word(char const *str, char c)
 {
 	int i;
 
@@ -38,10 +38,11 @@ static int	size_dest(char const *str, char c)
 	{
 		if (str[i] != c)
 		{
-			i = i + size(&str[i], c);
+			i = i + size_word(&str[i], c);
 			y++;
 		}
-		i++;
+		else
+			i++;
 	}
 	return (y);
 }
@@ -62,8 +63,8 @@ char		**ft_split(char const *str, char c)
 	{
 		if (str[i] != c)
 		{
-			final[y] = ft_substr(&str[i], 0, size(&str[i], c));
-			i = i + size(&str[i], c);
+			final[y] = ft_substr(&str[i], 0, size_word(&str[i], c));
+			i = i + size_word(&str[i], c);
 			y++;
 		}
 		if (str[i])

@@ -1,4 +1,4 @@
-#include "../includes/lib.h"
+#include "../includes/anagram.h"
 
 t_word	*ft_lst_word_new(void *content, int len)
 {
@@ -7,29 +7,35 @@ t_word	*ft_lst_word_new(void *content, int len)
 	if (!(final = malloc(sizeof(t_word))))
 		return (NULL);
 	final->word = content;
+	if (content && final->word[0] >= 'A' && final->word[0] <= 'Z')
+		final->word[0] += 32;
+	final->nature = NULL;
 	final->next = NULL;
 	return (final);
 }
 
-char	*extract_nature_from_line(char *line)
+int		check_if_valid_nature(char *s)
 {
-	char	*nature;
-	char	*ptr_dot;
-	char	*ptr_comma;
-	int		len;
-
-	ptr_comma = ft_strchr(line, ',');
-	ptr_dot = ft_strchr(line, '.');
-	if (!ptr_comma || !ptr_dot || ptr_comma < ptr_dot)
-		return (NULL);
-	len = ptr_dot - ptr_comma - 2;
-	if (!(nature = malloc(sizeof(*nature) * (len + 1))))
-		return (NULL);
-	strncpy(nature, ptr_comma + 1, len);
-	nature[len] = '\0';
-	return (nature);
+	if (!s)
+		return (0);
+	if (ft_strequ(s, "v.") 
+			|| ft_strequ(s, "-v.")
+			|| ft_strequ(s, "n.")
+			|| ft_strequ(s, "-n.")
+			|| ft_strequ(s, "adj.")
+			|| ft_strequ(s, "-adj.")
+			|| ft_strequ(s, "-adv.")
+			|| ft_strequ(s, "adv.")
+			|| ft_strequ(s, "abbr.")
+			|| ft_strequ(s, "-conj.")
+			|| ft_strequ(s, "conj.")
+			|| ft_strequ(s, "var.")
+			|| ft_strequ(s, "prep.")
+			|| ft_strequ(s, "pron."))
+		return (1);
+	return (0);
+		
 }
-
 
 t_word	*put_words_in_lst(int fd)
 {
@@ -44,11 +50,9 @@ t_word	*put_words_in_lst(int fd)
 	free(line);
 	while (get_next_line(fd, &line) > 0)
 	{
-		ft_putstr(line);
-		ft_putchar('\n');
 		if (line)
 			line2d = ft_split(line, ' ');
-		if (line2d[0])
+		if (line2d[0] && ft_str_is_alpha(line2d[0]) && check_if_valid_nature(line2d[1]))
 		{
 			temp->next = ft_lst_word_new(ft_strdup(line2d[0]), ft_strlen(line2d[0]));
 			if (line2d[1])
@@ -67,9 +71,12 @@ void	ft_print_lst(t_word *lst, char *str)
 {
 	while (lst)
 	{
-
-		printf("%s %s\n", str, lst->word);
-		lst = lst->next; 
+		if (str)
+			ft_putstr(str);
+		if (lst->word)
+			ft_putstr(lst->word);
+		ft_putchar('\n');
+		lst = lst->next;
 	}
 }
 
@@ -87,4 +94,19 @@ void	ft_lstdel(t_word **lst)
 	}
 	free(*backup);
 	backup = NULL;
+}
+
+int		ft_lstsize(t_word *lst)
+{
+	int i;
+
+	if (!lst)
+		return (0);
+	i = 1;
+	while (lst->next != NULL)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }

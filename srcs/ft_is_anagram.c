@@ -1,4 +1,4 @@
-#include "../includes/lib.h"
+#include "../includes/anagram.h"
 
 static int	ft_place_is_free(int nb, char *array)
 {
