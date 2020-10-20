@@ -34,13 +34,13 @@ t_word	*find_anagrams(char *word, t_word *dico, int partial_anagrams)
 		{
 			if (flag_first == 0) 	// if it is the first element then we will store it in the pointer firs_elem
 			{						// and set the flag to 1;
-				solutions = ft_lst_word_new(dico->word, dico->len);
+				first_elem = ft_lst_word_new(dico->word, dico->len, dico->nature);
+				solutions = first_elem;
 				flag_first = 1;
-				first_elem = solutions;
 			}
 			else					// if it not the first element we can do it normally
 			{
-				solutions->next = ft_lst_word_new(dico->word, dico->len);
+				solutions->next = ft_lst_word_new(dico->word, dico->len, dico->nature);
 				solutions = solutions->next;
 			}
 		}
@@ -57,6 +57,8 @@ int			ft_is_anagram(char *word, char *candidate, int partial_accepted)
 
 	i = -1;
 	ft_memset(taken, 0, 100);
+	if (!word || !candidate)
+		return (0);
 	if (partial_accepted)
 		ft_swap_str(&word, &candidate);
 	if ((!partial_accepted && ft_strlen(word) != ft_strlen(candidate)) || 

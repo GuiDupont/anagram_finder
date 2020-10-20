@@ -23,7 +23,7 @@
 # define FLAGS "-0123456789.*\0"
 # define SYMB "cspdiuxX%\0"
 
-# define BUFFER_SIZE 30
+# define BUFFER_SIZE 1000
 
 typedef struct	s_list
 {
