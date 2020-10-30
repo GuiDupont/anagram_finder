@@ -16,29 +16,25 @@ void		ft_swap_str(char **s1, char **s2)
 	*s2 = temp;
 }
 
-
 t_word	*find_anagrams(char *word, t_word *dico, int partial_anagrams)
 {
 	t_word	*solutions;
 	t_word	*first_elem;
 	int		flag_first;
 
-			// same issue here we want to send the first element of our solutions
-			// so I used another triks which is to use a 'flag'. This int will let us know
-			// if we already created the first element or not.  
 	flag_first = 0;
 	first_elem = NULL;
-	while (dico)	// we are going through our linked list of words
+	while (dico)	
 	{
-		if (ft_is_anagram(word, dico->word, partial_anagrams) == 1)	// if they are anagrams we want to add the word to our solution list
+		if (ft_is_anagram(word, dico->word, partial_anagrams) == 1)	
 		{
-			if (flag_first == 0) 	// if it is the first element then we will store it in the pointer firs_elem
-			{						// and set the flag to 1;
+			if (flag_first == 0)
+			{
 				first_elem = ft_lst_word_new(dico->word, dico->len, dico->nature);
 				solutions = first_elem;
 				flag_first = 1;
 			}
-			else					// if it not the first element we can do it normally
+			else
 			{
 				solutions->next = ft_lst_word_new(dico->word, dico->len, dico->nature);
 				solutions = solutions->next;

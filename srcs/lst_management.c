@@ -10,6 +10,7 @@ t_word	*ft_lst_word_new(void *content, int len, char *nature)
 	if (content && final->word[0] >= 'A' && final->word[0] <= 'Z')
 		final->word[0] += 32;
 	final->nature = nature;
+	final->len = len;
 	final->next = NULL;
 	return (final);
 }
@@ -18,9 +19,7 @@ t_word	*ft_lst_word_new(void *content, int len, char *nature)
 void	add_elem_to_end_lst(t_word *lst, t_word *word)
 {
 	while (lst->next)
-	{
 		lst = lst->next;
-	}
 	lst->next = ft_lst_word_new(word->word, word->len, word->nature);
 }
 

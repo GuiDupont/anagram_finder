@@ -6,7 +6,7 @@
 /*   By: gdupont <gdupont@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 11:05:57 by user42            #+#    #+#             */
-/*   Updated: 2020/10/06 15:55:01 by gdupont          ###   ########.fr       */
+/*   Updated: 2020/10/27 12:17:49 by gdupont          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char			*ft_strcpy(char *dest, char *src);
 char			*ft_strdup(char const *s1);
 char			*ft_strjoin(char const *s1, char const *s2);
 char 			*ft_strjoin2d(char **cmd);
+char			*ft_strjoin_undefined(unsigned int nb_str, ...);
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strncat(char *dest, char const *src, unsigned int nb);
 char			*ft_strnew(int size);
