@@ -99,6 +99,8 @@ t_word	*put_words_in_lst(int fd)
 		line = NULL;
 		line2d = NULL;
 	}
+	free(line);
+	close(fd);
 	return (final);
 }
 
@@ -115,19 +117,31 @@ void	ft_print_lst(t_word *lst, char *str)
 	}
 }
 
-void	ft_lstdel(t_word **lst)
+void	ft_lstdel(t_word **lst, int free_inside)
 {
-	t_word	**backup;
-	
+	t_word	*current;
+	t_word	*backup;
+
+
 	if (!lst || !(*lst))
 		return ;
-	backup = lst;
-	while (*lst)
+	backup = *lst;
+	current = *lst;
+	while (current)
 	{
-		*lst = (*lst)->next;
-		free(*lst);
+		backup = current;
+		if (free_inside)
+		{
+			free(current->nature);
+			if (current->word && current->word[0] == 'z')
+				ft_putendl(current->word);
+			free(current->word);
+
+		}
+		free(current);
+		current = backup->next;
 	}
-	free(*backup);
+	free(current);
 	backup = NULL;
 }
 
@@ -135,10 +149,11 @@ void	ft_lstdel(t_word **lst)
 void	ft_del_partial_solution_by_nature(t_word **lst)
 {
 	int i = 0;
+	int	y = 0;
 
 	while (lst[i])
 	{
-		ft_lstdel(&(lst[i]->next));
+		ft_lstdel(&lst[i], 0);
 		i++;
 	}
 }

@@ -16,7 +16,7 @@ void		ft_swap_str(char **s1, char **s2)
 	*s2 = temp;
 }
 
-t_word	*find_anagrams(char *word, t_word *dico, int partial_anagrams)
+t_word		*find_anagrams(char *word, t_word *dico, int partial_anagrams)
 {
 	t_word	*solutions;
 	t_word	*first_elem;

@@ -1,15 +1,35 @@
 #include "../includes/anagram.h"
 
+void	ft_putstr_undefined(unsigned int nb, ...)
+{
+	va_list ap;
+	char	*word;
+
+	va_start(ap, nb);
+	while (nb--)
+	{
+		word = va_arg(ap, char *);
+		ft_putstr(word);
+		if (nb)
+			ft_putchar(' ');
+		else
+			ft_putchar('\n');
+	}
+
+	va_end(ap);
+}
+
 
 void	set_partial_ordered_solutions_to_null(t_word *to_set_to_null[9])
 {
 	int i = 0;
 
-	while (i < 9)
+	while (i < NATURE_NB)
 	{
 		to_set_to_null[i] = ft_lst_word_new(NULL, 0, NULL);
 		i++;
 	}
+	to_set_to_null[i] = NULL;
 }
 
 char	*erase_whitespaces_and_cap_from_str(char *line)
@@ -31,7 +51,7 @@ char	*erase_whitespaces_and_cap_from_str(char *line)
 	return (line);
 }
 
-void	test_combinations(char *s, t_word *ordered[10])
+void	test_N_V_ADJ_N(char *s, t_word *ordered[10])
 {
 	int		len;
 	char	*candidate;
@@ -56,10 +76,8 @@ void	test_combinations(char *s, t_word *ordered[10])
 					if ((save_noun->len + save_adj->len + save_verb->len + save_noun_2->len) == len)
 					{
 						candidate = ft_strjoin_undefined(4, save_noun->word, save_verb->word, save_adj->word, save_noun_2->word);
-						ft_putstr(candidate);
-						//ft_putchar('\n');
-						//if (ft_is_anagram(s, candidate, PARTIAL_NOT_ACCEPTED))
-						//	printf("Here is a working anagram: %s %s\n", save_noun->word, save_adj->word);
+						if (ft_is_anagram(s, candidate, PARTIAL_NOT_ACCEPTED))
+							ft_putstr_undefined(6, "-Anagrams :", save_noun->word, save_verb->word, save_adj->word, save_noun_2->word, "-");
 						free(candidate);
 					}
 					save_noun_2 = save_noun_2->next;
@@ -72,7 +90,16 @@ void	test_combinations(char *s, t_word *ordered[10])
 	}
 }
 
-int	main(int argc, char **argv)
+int	free_and_quit(char *line, t_global *global)
+{
+	ft_lstdel(&(global->dico), 1);
+	ft_del_partial_solution_by_nature(global->partial_solutions_by_nature);
+	free(line);
+	return (0);
+}
+
+
+int		main(int argc, char **argv)
 {
 	int			fd;
 	t_global	global;
@@ -85,24 +112,22 @@ int	main(int argc, char **argv)
 	if (fd < 0)
 		return (0);
 	global.dico = put_words_in_lst(fd);
-	set_partial_ordered_solutions_to_null(global.partial_solutions_by_nature);
 	while (1)
 	{
+		set_partial_ordered_solutions_to_null(global.partial_solutions_by_nature);
 		ft_putstr("Write a sentence, we will show you some anagrams:\n");
 		get_next_line(1, &line);
 		if (line[0] == 'x' && !line[1])
-			return (0);
+			return (free_and_quit(line, &global));
 		line = erase_whitespaces_and_cap_from_str(line);	
 		global.solutions = find_anagrams(line, global.dico, PARTIAL_NOT_ACCEPTED);
 		global.partial_solutions = find_anagrams(line, global.dico, PARTIAL_ACCEPTED);
 		lst_to_nature_ordered(global.partial_solutions, global.partial_solutions_by_nature);
-		//ft_print_lst(global.solutions, "Those are the complete solutions: ");
-		ft_print_lst(global.partial_solutions, "Those are the partial solutions: ");
-		//ft_print_lst(lobal.partial_solutions_by_nature[NOUN], "Those are the partial solutions which are NOUN: ");
-		test_combinations(line, global.partial_solutions_by_nature);
+		ft_print_lst(global.solutions, "Those are the complete solutions: ");
+		test_N_V_ADJ_N(line, global.partial_solutions_by_nature);
 		free(line);
-		ft_lstdel(&(global.solutions));
-		ft_lstdel(&(global.partial_solutions));
+		ft_lstdel(&(global.solutions), 0);
+		ft_lstdel(&(global.partial_solutions), 0);
 		ft_del_partial_solution_by_nature(global.partial_solutions_by_nature);
 	}
 	close(fd);
