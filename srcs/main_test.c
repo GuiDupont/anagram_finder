@@ -115,7 +115,7 @@ int		main(int argc, char **argv)
 	while (1)
 	{
 		set_partial_ordered_solutions_to_null(global.partial_solutions_by_nature);
-		ft_putstr("Write a sentence, we will show you some anagrams:\n");
+		ft_putstr("Write a sentence, we will show you some anagrams: (type x to quit)\n");
 		get_next_line(1, &line);
 		if (line[0] == 'x' && !line[1])
 			return (free_and_quit(line, &global));
